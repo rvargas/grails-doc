@@ -45,7 +45,8 @@ class Person {
     static constraints = {
         name validator: {
 	  if (!it) return ['entryMissing']
-       }
+        }
+    }
 }
 
 // This maps to a message
@@ -60,7 +61,8 @@ class Person {
     static constraints = {
         yearOfBirth validator: {
 	  if (yearOfBirth>2013) return ['yearTooBig']
-       }
+        }
+    }
 }
 
 // This maps to a message
@@ -75,10 +77,12 @@ class Astronaut {
     Integer yearOfBirth
     Integer yearOfFirstSpaceTravel
 
+    static constraints = {
         yearOfFirstSpaceTravel validator: { val, obj ->
                 if (val < obj.yearOfBirth) ['datePriorTo', val.toString(), obj.yearOfBirth]
                 else if (val < (obj.yearOfBirth+18)) ['maybeABitTooYoung', val-obj.yearOfBirth]
         }
+    }
 }
 
 // Respective messages
